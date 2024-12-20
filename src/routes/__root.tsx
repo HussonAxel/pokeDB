@@ -1,10 +1,16 @@
-import '@styles/index.css'
+import "@styles/index.css";
 
-import { useState } from 'react'
+import { useState } from "react";
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/router-devtools'
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  createRootRoute,
+  Outlet,
+  ScrollRestoration,
+} from "@tanstack/react-router";
+
+import Header from "@components/ui/Header/Header";
+import Footer from "@components/ui/Footer/Footer";
 
 export const Route = createRootRoute({
   component: () => {
@@ -17,23 +23,18 @@ export const Route = createRootRoute({
           },
         },
       })
-    )
+    );
     return (
       <>
-        <div className='p-2 flex gap-2'>
-          <Link to='/' className='[&.active]:text-orange-500'>
-            Home
-          </Link>
-          <Link to='/query' className='[&.active]:text-orange-500'>
-            Query
-          </Link>
-        </div>
-        <hr />
+        <ScrollRestoration />
+        <Header />
         <QueryClientProvider client={queryClient}>
-          <Outlet />
+          <main className="flex-1 flex flex-col">
+            <Outlet />
+          </main>
         </QueryClientProvider>
-        <TanStackRouterDevtools />
+        <Footer test="test" />
       </>
-    )
+    );
   },
-})
+});

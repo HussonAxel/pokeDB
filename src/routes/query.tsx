@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
-import { createLazyFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createLazyFileRoute('/query')({
+export const Route = createFileRoute('/query')({
   component: Query,
 })
 
@@ -14,11 +14,11 @@ function Query() {
     },
   })
   return (
-    <div className='p-2'>
+    <div className="p-2">
       <p>Watch out for Dogs...</p>
       {status === 'success' ? (
-        <div className='overflow-hidden w-[640px] h-[480px]'>
-          <img src={data.message} alt='dog' className='w-full' />
+        <div className="overflow-hidden w-[640px] h-[480px]">
+          <img src={data.message} alt="dog" className="w-full" />
         </div>
       ) : (
         <p>Working...</p>
